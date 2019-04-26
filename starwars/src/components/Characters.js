@@ -5,7 +5,6 @@ import './StarWars.css';
 const Characters = (props) => {
   console.log(props);
   return (
-    <div>
       <ul className="Characters">
        {
           props.chars.map((char) => (
@@ -13,7 +12,6 @@ const Characters = (props) => {
           ))
        }
       </ul>
-    </div>
   );
 }
  
