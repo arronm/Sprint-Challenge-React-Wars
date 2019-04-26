@@ -3,7 +3,6 @@ import Character from './Character';
 import './StarWars.css';
 
 const Characters = (props) => {
-  console.log(props);
   return (
       <ul className="Characters">
        {
