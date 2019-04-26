@@ -11,3 +11,19 @@
   text-shadow: 1px 1px 5px #fff;
 }
 /* write your parent styles in here for your App.js */
+.paginate {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.paginate.next {
+  right: 30px;
+}
+
+.paginate.previous {
+  left: 30px;
+}

@@ -36,7 +36,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
+        <span className="paginate previous" name="prev" onClick={this.handlePagination}>previous</span>
         <Characters chars={this.state.starwarsChars} />
+        <span className="paginate next" name="next" onClick={this.handlePagination}>next</span>
       </div>
     );
   }
