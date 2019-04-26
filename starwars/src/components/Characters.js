@@ -3,8 +3,9 @@ import Character from './Character';
 import './StarWars.css';
 
 const Characters = (props) => {
+  const classes = `Characters ${props.animate ? props.animate : null}`;
   return (
-      <ul className="Characters">
+      <ul className={classes}>
        {
           props.chars.length > 0
             ? props.chars.map((char, index) => (

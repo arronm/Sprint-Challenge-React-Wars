@@ -9,15 +9,15 @@ class App extends Component {
       starwarsChars: [],
       next: '',
       prev: '',
+      animate: '',
     };
-    this.handlePagination = this.handlePagination.bind(this);
   }
 
   componentDidMount() {
     this.getCharacters('https://swapi.co/api/people/'); 
   }
 
-  getCharacters = URL => {
+  getCharacters = (URL, cb) => {
     fetch(URL)
       .then(res => {
         return res.json();
@@ -29,6 +29,9 @@ class App extends Component {
           prev: data.previous,
           next: data.next,
         });
+        if (cb) {
+          cb();
+        }
       })
       .catch(err => {
         throw new Error(err);
@@ -36,7 +39,36 @@ class App extends Component {
   };
 
   handlePagination(e) {
-    this.getCharacters(this.state[e.target.getAttribute('name')]);
+    console.log(e.target);
+    const direction = e.target.getAttribute('name');
+    // This is dirty but more verbose than a boolean?
+    const opposite = direction === 'next' ? 'prev' : 'next';
+
+    this.setState({
+      ...this.state,
+      animate: `animate-${direction}`,
+    });
+
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        animate: `animate-${opposite} hide`,
+      });
+    }, 250);
+
+    this.getCharacters(this.state[direction], () => {
+      this.setState({
+        ...this.state,
+        animate: `animate-${opposite}`,
+      });
+      
+      setTimeout(() => {
+        this.setState({
+          ...this.state,
+          animate: '',
+        })  
+      }, 250);
+    })
   }
 
   render() {
@@ -45,13 +77,13 @@ class App extends Component {
         <h1 className="Header">React Wars</h1>
         {
           this.state.prev
-            ? <span className="paginate previous" name="prev" onClick={this.handlePagination}>previous</span>
+            ? <span className="paginate previous" name="prev" onClick={(e) => this.handlePagination(e)}>previous</span>
             : null
         }
-        <Characters chars={this.state.starwarsChars} />
+        <Characters chars={this.state.starwarsChars} animate={this.state.animate} />
         {
           this.state.next
-            ? <span className="paginate next" name="next" onClick={this.handlePagination}>next</span>
+            ? <span className="paginate next" name="next" onClick={(e) => this.handlePagination(e)}>next</span>
             : null
         }
       </div>
