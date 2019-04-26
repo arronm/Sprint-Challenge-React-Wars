@@ -17,3 +17,11 @@
   font-weight: bold;
   border-radius: 3px;
 }
+
+.loading {
+  list-style: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 5rem;
+}

@@ -6,9 +6,11 @@ const Characters = (props) => {
   return (
       <ul className="Characters">
        {
-          props.chars.map((char) => (
-            <Character char={char} />
-          ))
+          props.chars.length > 0
+            ? props.chars.map((char, index) => (
+                <Character key={index} char={char} />
+              ))
+            : <li className="loading">Loading</li>
        }
       </ul>
   );
