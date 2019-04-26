@@ -10,6 +10,7 @@ class App extends Component {
       next: '',
       prev: '',
       animate: '',
+      loading: 'Loading',
     };
   }
 
@@ -34,12 +35,12 @@ class App extends Component {
         }
       })
       .catch(err => {
-        throw new Error(err);
+        // TODO: This should probably have a maximum number of attempts
+        this.getCharacters(URL, cb);
       });
   };
 
   handlePagination(e) {
-    console.log(e.target);
     const direction = e.target.getAttribute('name');
     // This is dirty but more verbose than a boolean?
     const opposite = direction === 'next' ? 'prev' : 'next';
