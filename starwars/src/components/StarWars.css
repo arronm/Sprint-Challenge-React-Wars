@@ -1,0 +1,43 @@
+.Characters {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+  position: relative;
+  left: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.Character {
+  background: #f5f5f5;
+  width: 50%;
+  list-style: none;
+  height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.loading {
+  list-style: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 5rem;
+  color: #f5f5f5;
+}
+
+.animate-next {
+  left: -100vw;
+}
+
+.animate-prev {
+  left: 100vw;
+}
+
+.hide {
+  display: none;
+}
